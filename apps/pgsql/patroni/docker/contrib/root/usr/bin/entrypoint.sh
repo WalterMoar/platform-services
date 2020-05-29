@@ -18,9 +18,27 @@ bootstrap:
     postgresql:
       use_pg_rewind: true
       parameters:
+        checkpoint_completion_target: ${POSTGRESQL_CHECKPOINT_COMPLETION_TARGET:0.5}
+        effective_cache_size: ${POSTGRESQL_EFFECTIVE_CACHE_SIZE:524288}
+        effective_io_concurrency: ${POSTGRESQL_EFFECTIVE_IO_CONCURRENCY:1}
+        idle_in_transaction_session_timeout: ${POSTGRESQL_IDLE_IN_TRANSACTION_SESSION_TIMEOUT:0}
+        log_autovacuum_min_duration: ${POSTGRESQL_LOG_AUTOVACUUM_MIN_DURATION:-1}
+        log_checkpoints: ${POSTGRESQL_LOG_CHECKPOINTS:off}
+        log_lock_waits: ${POSTGRESQL_LOG_LOCK_WAITS:off}
+        log_min_duration_statement: ${POSTGRESQL_LOG_MIN_DURATION_STATEMENT:-1}
+        log_temp_files: ${POSTGRESQL_LOG_TEMP_FILES:-1}
+        maintenance_work_mem: ${POSTGRESQL_MAINTENANCE_WORK_MEM:65536}
         max_connections: ${POSTGRESQL_MAX_CONNECTIONS:-100}
-        max_prepared_transactions: ${POSTGRESQL_MAX_PREPARED_TRANSACTIONS:-0}
         max_locks_per_transaction: ${POSTGRESQL_MAX_LOCKS_PER_TRANSACTION:-64}
+        max_parallel_workers: ${POSTGRESQL_MAX_PARALLEL_WORKERS:8}
+        max_parallel_workers_per_gather: ${POSTGRESQL_MAX_PARALLEL_WORKERS_PER_GATHER:2}
+        max_prepared_transactions: ${POSTGRESQL_MAX_PREPARED_TRANSACTIONS:-0}
+        max_wal_size: ${POSTGRESQL_MAX_WAL_SIZE:1024}
+        min_wal_size: ${POSTGRESQL_MIN_WAL_SIZE:80}
+        random_page_cost: ${POSTGRESQL_RANDOM_PAGE_COST:4}
+        shared_buffers: ${POSTGRESQL_SHARED_BUFFERS:16384}
+        track_io_timing: ${POSTGRESQL_TRACK_IO_TIMING:off}
+        work_mem: ${POSTGRESQL_WORK_MEM:4096}
   initdb:
   - auth-host: md5
   - auth-local: trust
